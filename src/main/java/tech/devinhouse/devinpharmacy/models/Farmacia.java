@@ -1,26 +1,29 @@
 package tech.devinhouse.devinpharmacy.models;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import java.util.Set;
 
 @Entity
 @Table(name = "FARMACIAS")
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class Farmacia {
   @Id
+  @Column(nullable = false)
   private Long cnpj;
+  @Column(nullable = false)
   private String razaoSocial;
+  @Column(nullable = false)
   private String nomeFantasia;
+  @Column(nullable = false)
   private String email;
+  @Column
   private String telefone;
+  @Column(nullable = false)
   private String celular;
   @Embedded
   private Endereco endereco;
+
+  @OneToMany(mappedBy = "farmacia", cascade = CascadeType.ALL)
+  private Set<Estoque> estoques;
 }

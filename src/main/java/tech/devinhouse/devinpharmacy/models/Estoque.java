@@ -1,26 +1,34 @@
 package tech.devinhouse.devinpharmacy.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "ESTOQUES")
-@IdClass(IdEstoque.class)
-@NoArgsConstructor
-@RequiredArgsConstructor
+@IdClass(EstoqueId.class)
 @Data
 public class Estoque {
-  @Id
-  private Long cnpj;
-  @Id
-  private Integer nroRegistro;
+  @EmbeddedId
+  private EstoqueId id;
+
+  @ManyToOne
+  @MapsId("cnpj")
+  @JoinColumn(name = "cnpj")
+  private Farmacia farmacia;
+
+  @ManyToOne
+  @MapsId("nroRegistro")
+  @JoinColumn(name = "nro_registro")
+  private Medicamento medicamento;
+
+
+  @Column(nullable = false)
   private Integer quantidade;
+  @Column(nullable = false)
   private LocalDateTime dataAtualizacao;
+
+
 }

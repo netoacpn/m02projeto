@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Embeddable
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class Endereco {
   private Long cep;
