@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ESTOQUES")
-@IdClass(EstoqueId.class)
 @Data
 public class Estoque {
   @EmbeddedId
@@ -24,11 +23,9 @@ public class Estoque {
   @JoinColumn(name = "nro_registro")
   private Medicamento medicamento;
 
-
   @Column(nullable = false)
   private Integer quantidade;
   @Column(nullable = false)
   private LocalDateTime dataAtualizacao;
-
 
 }
