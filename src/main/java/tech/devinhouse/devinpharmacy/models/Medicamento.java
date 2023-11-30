@@ -3,15 +3,14 @@ package tech.devinhouse.devinpharmacy.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import tech.devinhouse.devinpharmacy.enums.TipoMedicamento;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "MEDICAMENTOS")
 @Data
+@NoArgsConstructor
 public class Medicamento {
   @Id
   @Column(nullable = false)
@@ -31,4 +30,14 @@ public class Medicamento {
 
   @OneToMany(mappedBy = "medicamento", cascade = CascadeType.ALL)
   private Set<Estoque> estoques;
+
+  public Medicamento(Integer nroRegistro, String nome, String laboratorio, String dosagem, String descricao, Float preco, TipoMedicamento tipo) {
+    this.nroRegistro = nroRegistro;
+    this.nome = nome;
+    this.laboratorio = laboratorio;
+    this.dosagem = dosagem;
+    this.descricao = descricao;
+    this.preco = preco;
+    this.tipo = tipo;
+  }
 }
