@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -27,13 +28,14 @@ public class Estoque {
   @JoinColumn(name = "nro_registro")
   private Medicamento medicamento;
 
-  @Column(nullable = false)
+  @NonNull
   private Integer quantidade;
-  @Column(nullable = false)
+  @NonNull
   private LocalDateTime dataAtualizacao;
 
 
   public Estoque(Farmacia farmacia, Medicamento medicamento, Integer quantidade, LocalDateTime dataAtualizacao) {
+    this.id = new EstoqueId(farmacia.getCnpj(), medicamento.getNroRegistro());
     this.farmacia = farmacia;
     this.medicamento = medicamento;
     this.quantidade = quantidade;

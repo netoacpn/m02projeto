@@ -69,6 +69,7 @@ public class InicializacaoFarmaciaController {
     estoqueService.saveEstoque(estoque6);
 
 
+
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }
