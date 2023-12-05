@@ -6,4 +6,6 @@ import tech.devinhouse.devinpharmacy.models.Farmacia;
 
 @Repository
 public interface FarmaciaRepository extends JpaRepository<Farmacia, Long> {
+  boolean existsByCnpj(Long cnpj);
+
 }

@@ -1,20 +1,19 @@
-package tech.devinhouse.devinpharmacy.models;
+package tech.devinhouse.devinpharmacy.dto;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import tech.devinhouse.devinpharmacy.models.Farmacia;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.Set;
 
-@Entity
-@Table(name = "FARMACIAS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Farmacia {
-  @Id
+public class FarmaciaRequest {
+
   @NotNull(message = "O CNPJ é obrigatório.")
   @Pattern(regexp = "\\d{14}", message = "CNPJ deve conter apenas dígitos e ter 14 caracteres")
   private Long cnpj;
@@ -26,21 +25,12 @@ public class Farmacia {
   private String email;
   private String telefone;
   @NotBlank(message = "Celular é obrigatório.")
-   private String celular;
-  @Embedded
+  private String celular;
   @NotBlank(message = "Endereço é obrigatório.")
-  private Endereco endereco;
+  private EnderecoRequest endereco;
 
-  @OneToMany(mappedBy = "farmacia", cascade = CascadeType.ALL)
-  private Set<Estoque> estoques;
 
-  public Farmacia(Long cnpj, String razaoSocial, String nomeFantasia, String email, String telefone, String celular, Endereco endereco) {
-    this.cnpj = cnpj;
-    this.razaoSocial = razaoSocial;
-    this.nomeFantasia = nomeFantasia;
-    this.email = email;
-    this.telefone = telefone;
-    this.celular = celular;
-    this.endereco = endereco;
+  public Farmacia toFarmacia() {
+    return new Farmacia(cnpj, razaoSocial, nomeFantasia, email, telefone, celular, endereco.toEndereco());
   }
 }

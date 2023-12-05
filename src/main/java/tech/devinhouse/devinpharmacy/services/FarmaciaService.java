@@ -30,4 +30,7 @@ public class FarmaciaService {
     farmaciaRepository.deleteById(cnpj);
   }
 
+  public boolean existsByCnpj(Long cnpj) {
+    return farmaciaRepository.existsByCnpj(cnpj);
+  }
 }

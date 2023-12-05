@@ -3,31 +3,32 @@ package tech.devinhouse.devinpharmacy.models;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Embeddable
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 public class Endereco {
-  @NonNull
   private Long cep;
-  @NonNull
   private String logradouro;
-  @NonNull
   private Integer numero;
-  @NonNull
   private String bairro;
-  @NonNull
   private String cidade;
-  @NonNull
   private String estado;
   private String complemento;
-  @NonNull
   private Double latitude;
-  @NonNull
   private Double longitude;
 
-
-
-
+  public Endereco(Long cep, String logradouro, Integer numero, String bairro, String cidade, String estado, Double latitude, Double longitude) {
+    this.cep = cep;
+    this.logradouro = logradouro;
+    this.numero = numero;
+    this.bairro = bairro;
+    this.cidade = cidade;
+    this.estado = estado;
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
 }
