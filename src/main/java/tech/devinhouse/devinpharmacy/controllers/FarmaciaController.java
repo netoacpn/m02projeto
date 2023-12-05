@@ -29,20 +29,20 @@ public class FarmaciaController {
   }
 
   @GetMapping("/{cnpj}")
-  public ResponseEntity<Farmacia> getFarmaciaById(@PathVariable Long cnpj){
+  public ResponseEntity<?> getFarmaciaById(@PathVariable Long cnpj){
     Optional<Farmacia> farmacia = farmaciaService.getFarmaciaById(cnpj);
     return farmacia.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
   }
 
   // VERIFICAR VALIDAÇÃO
   @PostMapping
-  public ResponseEntity<String> saveFarmacia(@RequestBody @Valid Farmacia farmacia){
+  public ResponseEntity<?> saveFarmacia(@RequestBody @Valid Farmacia farmacia){
     if (farmaciaService.existsByCnpj(farmacia.getCnpj())){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNPJ já cadastrado.");
     }
 
     farmaciaService.saveFarmacia(farmacia);
-    return ResponseEntity.status(HttpStatus.CREATED).body("Farmácia cadastrada com sucesso!");
+    return ResponseEntity.status(HttpStatus.CREATED).body(farmacia);
   }
 
 }

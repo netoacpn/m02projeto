@@ -29,4 +29,8 @@ public class MedicamentoService {
   public void deleteMedicamento(Integer nroRegistro){
     medicamentoRepository.deleteById(nroRegistro);
   }
+
+  public boolean existByNroRegistro(Integer nroRegistro) {
+    return medicamentoRepository.existsByNroRegistro(nroRegistro);
+  }
 }

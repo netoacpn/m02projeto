@@ -6,4 +6,5 @@ import tech.devinhouse.devinpharmacy.models.Medicamento;
 
 @Repository
 public interface MedicamentoRepository extends JpaRepository<Medicamento, Integer> {
+  boolean existsByNroRegistro(Integer nroRegistro);
 }
