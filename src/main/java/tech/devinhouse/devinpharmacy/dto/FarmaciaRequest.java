@@ -3,7 +3,6 @@ package tech.devinhouse.devinpharmacy.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tech.devinhouse.devinpharmacy.models.Farmacia;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -28,9 +27,4 @@ public class FarmaciaRequest {
   private String celular;
   @NotBlank(message = "Endereço é obrigatório.")
   private EnderecoRequest endereco;
-
-
-  public Farmacia toFarmacia() {
-    return new Farmacia(cnpj, razaoSocial, nomeFantasia, email, telefone, celular, endereco.toEndereco());
-  }
 }
