@@ -3,9 +3,6 @@ package tech.devinhouse.devinpharmacy.models;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 @Embeddable
 @Data
 @NoArgsConstructor
