@@ -13,15 +13,8 @@ public class DevinpharmacyApplication {
 	}
 
 	@Bean
-<<<<<<< HEAD
-	public ModelMapper getModelMapper() {
-		var mapper = new ModelMapper();
-		mapper.getConfiguration().setSkipNullEnabled(true);
-		return mapper;
-=======
 	public ModelMapper obterModelMapper() {
 		return new ModelMapper();
->>>>>>> feature/farmaciaController
 	}
 
 }

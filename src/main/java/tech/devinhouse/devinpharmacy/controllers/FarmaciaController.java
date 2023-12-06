@@ -37,11 +37,7 @@ public class FarmaciaController {
   }
 
   @GetMapping("/{cnpj}")
-<<<<<<< HEAD
   public ResponseEntity<?> getFarmaciaById(@PathVariable Long cnpj){
-=======
-  public ResponseEntity<?> getFarmaciaById(@PathVariable Long cnpj) {
->>>>>>> feature/farmaciaController
     Optional<Farmacia> farmacia = farmaciaService.getFarmaciaById(cnpj);
 
     if (farmacia.isPresent()) {
@@ -53,7 +49,6 @@ public class FarmaciaController {
   }
 
   @PostMapping
-<<<<<<< HEAD
   public ResponseEntity<?> saveFarmacia(@RequestBody @Valid Farmacia farmacia){
     if (farmaciaService.existsByCnpj(farmacia.getCnpj())){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNPJ já cadastrado.");
@@ -62,7 +57,6 @@ public class FarmaciaController {
     farmaciaService.saveFarmacia(farmacia);
     return ResponseEntity.status(HttpStatus.CREATED).body(farmacia);
   }
-=======
   public ResponseEntity<?> saveFarmacia(@RequestBody @Valid FarmaciaRequest farmaciaRequest) {
     if (farmaciaService.existsByCnpj(farmaciaRequest.getCnpj())) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNPJ já cadastrado.");
@@ -70,7 +64,6 @@ public class FarmaciaController {
 
     Farmacia farmacia = mapper.map(farmaciaRequest, Farmacia.class);
     farmacia = farmaciaService.saveFarmacia(farmacia);
->>>>>>> feature/farmaciaController
 
     FarmaciaResponse response = mapper.map(farmacia, FarmaciaResponse.class);
 
