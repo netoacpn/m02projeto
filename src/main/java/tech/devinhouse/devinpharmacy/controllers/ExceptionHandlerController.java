@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import tech.devinhouse.devinpharmacy.dto.ErrorDto;
 import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
+import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,13 @@ public class ExceptionHandlerController {
 
   @ExceptionHandler(CnpjFoundException.class)
   public ResponseEntity<?> cnpjNotFoundException(CnpjFoundException exception) {
+    return new ResponseEntity<>(
+        buildErrorDto(exception.getMessage()),
+        HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(NroRegistroFoundException.class)
+  public ResponseEntity<?> nroRegistroFoundException(NroRegistroFoundException exception) {
     return new ResponseEntity<>(
         buildErrorDto(exception.getMessage()),
         HttpStatus.BAD_REQUEST);
