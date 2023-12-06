@@ -1,5 +1,6 @@
 package tech.devinhouse.devinpharmacy.dto;
 
+import jakarta.persistence.Embedded;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,9 +29,4 @@ public class FarmaciaRequest {
   private String celular;
   @NotBlank(message = "Endereço é obrigatório.")
   private EnderecoRequest endereco;
-
-
-  public Farmacia toFarmacia() {
-    return new Farmacia(cnpj, razaoSocial, nomeFantasia, email, telefone, celular, endereco.toEndereco());
-  }
 }

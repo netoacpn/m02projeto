@@ -1,12 +1,16 @@
 package tech.devinhouse.devinpharmacy.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EnderecoResponse {
-  private String cep;
+  private Long cep;
   private String logradouro;
-  private String numero;
+  private Integer numero;
   private String bairro;
   private String cidade;
   private String estado;
@@ -14,15 +18,4 @@ public class EnderecoResponse {
   private Double latitude;
   private Double longitude;
 
-  public EnderecoResponse(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, Double latitude, Double longitude) {
-    this.cep = cep;
-    this.logradouro = logradouro;
-    this.numero = numero;
-    this.bairro = bairro;
-    this.cidade = cidade;
-    this.estado = estado;
-    this.complemento = complemento;
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
 }
