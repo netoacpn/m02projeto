@@ -33,4 +33,11 @@ public class MedicamentoService {
   public boolean existByNroRegistro(Integer nroRegistro) {
     return medicamentoRepository.existsByNroRegistro(nroRegistro);
   }
+
+  public String getNomeByNroRegistro(Integer nroRegistro) {
+    Optional<Medicamento> medicamentoOptional = medicamentoRepository.getByNroRegistro(nroRegistro);
+
+    return medicamentoOptional.map(Medicamento::getNome).orElse(null);
+
+  }
 }
