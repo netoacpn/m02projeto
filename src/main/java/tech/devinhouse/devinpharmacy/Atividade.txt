@@ -1,0 +1,24 @@
+RF07 - Consulta de Estoque de Farmácia
+Serviço de consulta do estoque de medicamentos de determinada farmácia.
+Regras:
+RN01 - Deve ser retornado uma lista contendo os medicamentos da farmácia indicada, ou uma lista vazia caso não tenha registro de estoque.
+Endpoint: HTTP GET ⇒ /estoque/{cnpj}
+Request: Sem request body ou parâmetros
+Response: HTTP 200 OK, com lista dos medicamentos em estoque naquela farmácia.
+	Campos de response: Lista com:  nroRegistro,  nome, quantidade, dataAtualizacao.
+Exemplo de resposta:
+[
+	{
+    	     "nroRegistro": 1010,
+    	     "nome": "Programapan",
+    	     "quantidade": 12,
+    	     "dataAtualizacao": "2023-11-16T23:05:59.134883"
+	},
+	{
+    	     "nroRegistro": 7473,
+    	     "nome": "Cafex",
+    	     "quantidade": 10,
+    	     "dataAtualizacao": "2023-11-16T23:05:59.134954"
+	}
+]
+

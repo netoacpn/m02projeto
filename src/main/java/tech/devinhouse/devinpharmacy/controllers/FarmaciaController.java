@@ -64,4 +64,3 @@ public class FarmaciaController {
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
 }
-

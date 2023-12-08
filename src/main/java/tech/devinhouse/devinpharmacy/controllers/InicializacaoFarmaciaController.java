@@ -55,17 +55,17 @@ public class InicializacaoFarmaciaController {
     medicamentoService.saveMedicamento(medicamento6);
 
 
-    Estoque estoque1 = new Estoque(farmacia1, medicamento1, 12, LocalDateTime.now());
+    Estoque estoque1 = new Estoque(90561736000121L, 1010, 12, LocalDateTime.now());
     estoqueService.saveEstoque(estoque1);
-    Estoque estoque2 = new Estoque(farmacia1, medicamento2, 10, LocalDateTime.now());
+    Estoque estoque2 = new Estoque(90561736000121L, 7473, 10, LocalDateTime.now());
     estoqueService.saveEstoque(estoque2);
-    Estoque estoque3 = new Estoque(farmacia2, medicamento2, 2, LocalDateTime.now());
+    Estoque estoque3 = new Estoque(43178995000198L, 7473, 2, LocalDateTime.now());
     estoqueService.saveEstoque(estoque3);
-    Estoque estoque4 = new Estoque(farmacia2, medicamento3, 15, LocalDateTime.now());
+    Estoque estoque4 = new Estoque(43178995000198L, 2233, 15, LocalDateTime.now());
     estoqueService.saveEstoque(estoque4);
-    Estoque estoque5 = new Estoque(farmacia2, medicamento4, 16, LocalDateTime.now());
+    Estoque estoque5 = new Estoque(43178995000198L, 8880, 16, LocalDateTime.now());
     estoqueService.saveEstoque(estoque5);
-    Estoque estoque6 = new Estoque(farmacia2, medicamento6, 22, LocalDateTime.now());
+    Estoque estoque6 = new Estoque(43178995000198L, 4040, 22, LocalDateTime.now());
     estoqueService.saveEstoque(estoque6);
 
 

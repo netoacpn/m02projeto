@@ -5,6 +5,12 @@ import org.springframework.stereotype.Repository;
 import tech.devinhouse.devinpharmacy.models.Estoque;
 import tech.devinhouse.devinpharmacy.models.EstoqueId;
 
+import java.util.List;
+import java.util.Optional;
+
+
 @Repository
 public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId> {
+
+  Optional<List<Estoque>> findByCnpj(Long cnpj);
 }
