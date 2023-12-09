@@ -43,7 +43,6 @@ public class ExceptionHandlerController {
         HttpStatus.BAD_REQUEST);
   }
 
-
   private ErrorDto buildErrorDto(String message) {
     return ErrorDto.builder()
         .message(message)

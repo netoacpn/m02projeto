@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.devinhouse.devinpharmacy.dto.EstoqueRequest;
 import tech.devinhouse.devinpharmacy.dto.ConsultaEstoqueResponse;
+import tech.devinhouse.devinpharmacy.dto.EstoqueTrocaRequest;
 import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
 import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
 import tech.devinhouse.devinpharmacy.exceptions.QuantidadeMaiorException;
@@ -46,5 +47,11 @@ public class EstoqueController {
   public ResponseEntity<?> deleteEstoque(@Valid @RequestBody EstoqueRequest estoqueRequest) throws CnpjFoundException, NroRegistroFoundException, QuantidadeMaiorException {
 
     return ResponseEntity.status(HttpStatus.OK).body(estoqueService.decreaseEstoque(estoqueRequest));
+  }
+
+  @PutMapping
+  public ResponseEntity<?> trocaEstoque(@Valid @RequestBody EstoqueTrocaRequest estoqueTrocaRequest) throws CnpjFoundException, NroRegistroFoundException, QuantidadeMaiorException{
+
+    return ResponseEntity.status(HttpStatus.OK).body(estoqueService.trocaEstoque(estoqueTrocaRequest));
   }
 }
