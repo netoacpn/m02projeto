@@ -26,10 +26,6 @@ public class FarmaciaService {
     return farmaciaRepository.findAll();
   }
 
-  public void deleteFarmacia(Long cnpj){
-    farmaciaRepository.deleteById(cnpj);
-  }
-
   public boolean existsByCnpj(Long cnpj) {
     return farmaciaRepository.existsByCnpj(cnpj);
   }

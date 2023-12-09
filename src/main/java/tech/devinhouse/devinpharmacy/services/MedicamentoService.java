@@ -26,10 +26,6 @@ public class MedicamentoService {
     return medicamentoRepository.findAll();
   }
 
-  public void deleteMedicamento(Integer nroRegistro){
-    medicamentoRepository.deleteById(nroRegistro);
-  }
-
   public boolean existByNroRegistro(Integer nroRegistro) {
     return medicamentoRepository.existsByNroRegistro(nroRegistro);
   }
@@ -38,7 +34,6 @@ public class MedicamentoService {
     Optional<Medicamento> medicamentoOptional = medicamentoRepository.getByNroRegistro(nroRegistro);
     return medicamentoOptional.map(Medicamento::getNome).orElse(null);
   }
-
 
   public boolean existsByNroRegistro(Integer nroRegistro) {
     return medicamentoRepository.existsByNroRegistro(nroRegistro);
