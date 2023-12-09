@@ -1,13 +1,15 @@
 package tech.devinhouse.devinpharmacy.controllers;
 
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import tech.devinhouse.devinpharmacy.dto.EstoqueResponse;
+import org.springframework.web.bind.annotation.*;
+import tech.devinhouse.devinpharmacy.dto.EstoqueRequest;
+import tech.devinhouse.devinpharmacy.dto.ConsultaEstoqueResponse;
+import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
+import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
 import tech.devinhouse.devinpharmacy.services.EstoqueService;
 
 
@@ -17,17 +19,25 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/estoques")
+@RequestMapping("/estoque")
 public class EstoqueController {
 
   @Autowired
   private EstoqueService estoqueService;
 
+  @Autowired
+  private ModelMapper mapper;
 
   @GetMapping("/{cnpj}")
-  public ResponseEntity<?> getEstoqueByCnpj(@PathVariable ("cnpj") Long cnpj){
-    Optional<List<EstoqueResponse>> estoques = estoqueService.getEstoqueByCnpj(cnpj);
+  public ResponseEntity<?> getEstoqueByCnpj(@PathVariable("cnpj") Long cnpj) {
+    Optional<List<ConsultaEstoqueResponse>> estoques = estoqueService.getEstoqueByCnpj(cnpj);
 
     return ResponseEntity.status(HttpStatus.OK).body(estoques.orElse(Collections.emptyList()));
+  }
+
+  @PostMapping
+  public ResponseEntity<?> saveEstoque(@Valid @RequestBody EstoqueRequest estoqueRequest) throws CnpjFoundException, NroRegistroFoundException {
+
+    return ResponseEntity.status(HttpStatus.OK).body(estoqueService.updateEstoque(estoqueRequest));
   }
 }
