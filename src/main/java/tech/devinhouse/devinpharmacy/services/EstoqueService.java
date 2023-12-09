@@ -8,6 +8,7 @@ import tech.devinhouse.devinpharmacy.dto.ConsultaEstoqueResponse;
 import tech.devinhouse.devinpharmacy.dto.EstoqueRequest;
 import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
 import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
+import tech.devinhouse.devinpharmacy.exceptions.QuantidadeMaiorException;
 import tech.devinhouse.devinpharmacy.models.Estoque;
 import tech.devinhouse.devinpharmacy.repository.EstoqueRepository;
 
@@ -77,6 +78,28 @@ public class EstoqueService {
     }
 
     estoqueEncontrado.setQuantidade(estoqueEncontrado.getQuantidade() + estoqueRequest.getQuantidade());
+
+    return estoqueRepository.save(estoqueEncontrado);
+  }
+
+
+
+  public Estoque decreaseEstoque(EstoqueRequest estoqueRequest) throws CnpjFoundException, NroRegistroFoundException, QuantidadeMaiorException {
+    if (!existsByCnpj(estoqueRequest.getCnpj())) {
+      throw new CnpjFoundException("CNPJ não encontrado.");
+    }
+
+    if (!existsByNroRegistro(estoqueRequest.getNroRegistro())) {
+      throw new NroRegistroFoundException("Número de Registro não encontrado");
+    }
+
+    Estoque estoqueEncontrado = estoqueRepository.findEstoqueByCnpjAndNroRegistro(estoqueRequest.getCnpj(), estoqueRequest.getNroRegistro());
+
+    if (estoqueRequest.getQuantidade() > estoqueEncontrado.getQuantidade()){
+      throw new QuantidadeMaiorException(String.format("Quantidade de produtos maior que o saldo atual: %d.", estoqueEncontrado.getQuantidade()));
+    }
+
+    estoqueEncontrado.setQuantidade(estoqueEncontrado.getQuantidade() - estoqueRequest.getQuantidade());
 
     return estoqueRepository.save(estoqueEncontrado);
   }

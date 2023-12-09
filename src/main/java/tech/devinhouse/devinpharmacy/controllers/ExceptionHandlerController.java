@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import tech.devinhouse.devinpharmacy.dto.ErrorDto;
 import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
 import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
+import tech.devinhouse.devinpharmacy.exceptions.QuantidadeMaiorException;
 
 import java.time.LocalDateTime;
 
@@ -34,6 +35,14 @@ public class ExceptionHandlerController {
         buildErrorDto(exception.getMessage()),
         HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(QuantidadeMaiorException.class)
+  public ResponseEntity<?> methodArgumentNotValidException(QuantidadeMaiorException exception) {
+    return new ResponseEntity<>(
+        buildErrorDto(exception.getMessage()),
+        HttpStatus.BAD_REQUEST);
+  }
+
 
   private ErrorDto buildErrorDto(String message) {
     return ErrorDto.builder()

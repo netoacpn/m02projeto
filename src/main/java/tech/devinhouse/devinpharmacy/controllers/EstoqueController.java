@@ -10,6 +10,7 @@ import tech.devinhouse.devinpharmacy.dto.EstoqueRequest;
 import tech.devinhouse.devinpharmacy.dto.ConsultaEstoqueResponse;
 import tech.devinhouse.devinpharmacy.exceptions.CnpjFoundException;
 import tech.devinhouse.devinpharmacy.exceptions.NroRegistroFoundException;
+import tech.devinhouse.devinpharmacy.exceptions.QuantidadeMaiorException;
 import tech.devinhouse.devinpharmacy.services.EstoqueService;
 
 
@@ -39,5 +40,11 @@ public class EstoqueController {
   public ResponseEntity<?> saveEstoque(@Valid @RequestBody EstoqueRequest estoqueRequest) throws CnpjFoundException, NroRegistroFoundException {
 
     return ResponseEntity.status(HttpStatus.OK).body(estoqueService.updateEstoque(estoqueRequest));
+  }
+
+  @DeleteMapping("/delete")
+  public ResponseEntity<?> deleteEstoque(@Valid @RequestBody EstoqueRequest estoqueRequest) throws CnpjFoundException, NroRegistroFoundException, QuantidadeMaiorException {
+
+    return ResponseEntity.status(HttpStatus.OK).body(estoqueService.decreaseEstoque(estoqueRequest));
   }
 }
